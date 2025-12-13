@@ -27,7 +27,7 @@ impl BatRank {
         self.val = 0;
     }
 }
-
+  
 fn part_2(banks: Vec<Vec<u64>>) {
     let mut total_joltage: u64 = 0;
     for bank in banks {
