@@ -17,7 +17,34 @@ const ALL_STEPS: [Step; 8] = [
 
 fn main() {
     let data = aoc2025::read_lines("data/day_04.txt");
-    let grid: Vec<Vec<char>> = data.iter().map(|s| s.chars().collect()).collect();
+    let mut grid: Vec<Vec<char>> = data.iter().map(|s| s.chars().collect()).collect();
+
+    part_2(&mut grid);
+}
+
+fn part_2(grid: &mut Vec<Vec<char>>) {
+    let mut count = 0;
+
+    let mut removed = 1;
+
+    while removed > 0 {
+        removed = 0;
+        for i in 0..grid.len() {
+            for j in 0..grid[0].len() {
+                if grid[i][j] == '@' {
+                    if count_neighbours(&grid, i as i32, j as i32) < 4 {
+                        count += 1;
+                        grid[i][j] = 'X';
+                        removed += 1;
+                    }
+                }
+            }
+        }
+    }
+    println!("{count}");
+}
+
+fn part_1(grid: &Vec<Vec<char>>) {
     let mut count = 0;
 
     // for row in &grid {
